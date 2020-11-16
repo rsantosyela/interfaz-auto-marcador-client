@@ -1,0 +1,29 @@
+<div id="import-csv-body">
+    <button class="return-button" [routerLink]="['/menu-principal']"><i class="arrow left"></i></button>
+    <div id="import-csv-box">
+        <h1 id="import-csv-title">Importar Csv</h1>
+        <form [formGroup]="fileForm" #profFom="ngForm" (ngSubmit)="uploadFile()">
+            <p>Configure el tiempo de reintentos de llamada</p>
+            <label>
+                <input type="number" [formControl]="fileForm.controls.retryTime" formControlName="retryTime" required>
+                <small class="error-message" *ngIf="(fileForm.controls.retryTime.dirty || fileForm.controls.retryTime.touched || submitted) && fileForm.controls.retryTime.errors?.required">Este campo es obligatorio*</small>
+            </label>
+            <p>Seleccione el archivo .csv a importar</p>
+            <label>
+                <input type="file" [formControl]="fileForm.controls.file" formControlName="file" (change)="handleFileInput($event.target.files)" required><br>
+                <small class="error-message" *ngIf="(fileForm.controls.file.dirty || fileForm.controls.file.touched || submitted) && isCsv && fileForm.controls.file.errors?.required">Este campo es obligatorio*</small>
+                <small class="error-message" *ngIf="(!isCsv) && fileForm.controls.file.errors?.required">Utilice solo archivos .csv formateados correctamente*</small>
+            </label>
+            <br>       
+            <input id="import-csv-button" type="submit" value="Importar Csv">
+        </form>
+    </div>
+</div>
+
+<ngx-smart-modal customClass="nsm-dialog-animation-ttb" #myModal identifier="importConfirmationModal" (onDismissFinished)="reload()" (onCloseFinished)="reload()">
+    <div id="modal-box">  
+        <h2>¡Archivo importado con éxito!</h2>
+    </div>
+</ngx-smart-modal>
+
+

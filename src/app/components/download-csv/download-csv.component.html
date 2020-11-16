@@ -1,0 +1,11 @@
+<div id="download-csv-body">
+    <button class="return-button" [routerLink]="['/menu-principal']"><i class="arrow left"></i></button>
+    <div id="download-csv-box">
+        <h1 id="download-csv-title">Csv de pérdidas</h1>
+        <p>La infomación contenida en el Csv de pérdidas es la siguiente</p>
+        <ng2-smart-table [settings]="settings" [source]="lostCalls"></ng2-smart-table>
+        <button id="download-csv-button" (click)="downloadCsv()">Descargar Csv</button>
+    </div>
+</div>
+
+

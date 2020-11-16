@@ -1,0 +1,22 @@
+<div id="login-box">
+    <h1 id="section-title">INTERFAZ AUTO MARCADOR</h1>
+    <form id="form-box" [formGroup]="loginForm" #profFom="ngForm" (ngSubmit)="userLogin()">
+        <label>
+            Correo electrónico:*
+            <input type="email" [formControl]="loginForm.controls.email" formControlName="email" required>
+            <small class="error-message" *ngIf="(loginForm.controls.email.dirty || loginForm.controls.email.touched || submitted) && loginForm.controls.email.errors?.required">Este campo es obligatorio*</small>
+            <small class="error-message" *ngIf="loginForm.controls['email'].hasError('email')">Debe introducir una dirección de email válida*</small>
+        </label>
+        <br>
+        <br>
+        <label>
+            Contraseña:*
+            <input type="password" [formControl]="loginForm.controls.password" formControlName="password" required>
+            <small class="error-message" *ngIf="(loginForm.controls.password.dirty || loginForm.controls.password.touched || submitted) && loginForm.controls.password.errors?.required">Este campo es obligatorio*</small> 
+        </label>
+        <br> 
+        <br>
+        <input type="submit" value="Iniciar sesión">
+    </form>     
+</div>
+
